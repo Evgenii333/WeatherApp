@@ -3,14 +3,15 @@ package space.simakov.weatherapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import space.simakov.weatherapp.screens.mainScreen
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import space.simakov.weatherapp.screens.MainCard
+import space.simakov.weatherapp.screens.TabLayout
 import space.simakov.weatherapp.ui.theme.WeatherAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +19,19 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherAppTheme {
-                mainScreen()
+                Image(
+                    painter = painterResource(id = R.drawable.weather_background),
+                    contentDescription = "im1",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .alpha(0.5f),
+                    contentScale = ContentScale.FillBounds
+                )
+
+                Column {
+                    MainCard()
+                    TabLayout()
+                }
             }
         }
     }
