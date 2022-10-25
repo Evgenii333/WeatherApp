@@ -2,6 +2,7 @@ package space.simakov.weatherapp.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -22,6 +23,7 @@ import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 import space.simakov.weatherapp.R
+import space.simakov.weatherapp.data.WeatherModel
 import space.simakov.weatherapp.ui.theme.BlueLight
 
 
@@ -172,9 +174,35 @@ fun TabLayout() {
         state = pagerState,
         modifier = Modifier.weight(1.0f)
         ) {index ->
-            LazyColumn(modifier = Modifier.fillMaxSize()){
-                items(15){
-                    ListItem()
+            LazyColumn(modifier = Modifier.fillMaxSize()
+            ){
+
+                itemsIndexed(
+                    listOf(
+                        WeatherModel(
+                            "London",
+                            "10:00",
+                            "25 C",
+                            "Sunny",
+                            "//cdn.weatherapi.com/weather/64x64/night/113.png",
+                            "",
+                            "",
+                            ""
+                        ),
+                        WeatherModel(
+                            "London",
+                            "26/07/2022",
+                            "",
+                            "Sunny",
+                            "//cdn.weatherapi.com/weather/64x64/night/113.png",
+                            "26 C",
+                            "12 C",
+                            "333"
+                        )
+                    )
+                ){
+                    _, item -> ListItem(item)
+
                 }
             }
 
